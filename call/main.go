@@ -46,8 +46,14 @@ func getTimeProcessingInAndOutResult(inputName string, records [][]string) (int,
 
 		from := record[0]
 		to := record[1]
-		startTime, _ := time.Parse(time.RFC3339, record[2])
-		endTime, _ := time.Parse(time.RFC3339, record[3])
+		startTime, err := time.Parse(time.RFC3339, record[2])
+		if err != nil {
+			log.Fatal("Unable to parse start time")
+		}
+		endTime, err := time.Parse(time.RFC3339, record[3])
+		if err != nil {
+			log.Fatal("Unable to parse end time")
+		}
 
 		duration := int(endTime.Sub(startTime).Minutes())
 
