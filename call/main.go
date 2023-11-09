@@ -37,14 +37,9 @@ func readCsvFile(filePath string) [][]string {
 	return records
 }
 
-func main() {
-
-	records := readCsvFile("./call/input.csv")
+func getTimeProcessingInAndOutResult(inputName string, records [][]string) (int, int) {
 	totalIncomingDuration := 0
 	totalOutGoingDuration := 0
-
-	inputName := "John"
-
 	for _, record := range records {
 
 		from := record[0]
@@ -61,6 +56,21 @@ func main() {
 		}
 
 	}
+	return totalIncomingDuration, totalOutGoingDuration
+
+}
+
+func main() {
+	var totalIncomingDuration = 0
+	var totalOutGoingDuration = 0
+	records := readCsvFile("./call/input.csv")
+	if len(os.Args) < 2 {
+		fmt.Println("Usage: go run main.go <inputName>")
+		os.Exit(1)
+	}
+	inputName := os.Args[1]
+
+	totalIncomingDuration, totalOutGoingDuration = getTimeProcessingInAndOutResult(inputName, records)
 	fmt.Printf("%s incoming call time is ::%v\n", inputName, totalIncomingDuration)
 	fmt.Printf("%s out going call is :: %v", inputName, totalOutGoingDuration)
 
