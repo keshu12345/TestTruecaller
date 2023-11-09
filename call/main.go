@@ -39,7 +39,7 @@ func readCsvFile(filePath string) [][]string {
 
 func main() {
 
-	records := readCsvFile("/Users/jitendrakumarpaudwal/TestTrueCaller/call/input.csv")
+	records := readCsvFile("./call/input.csv")
 	totalIncomingDuration := 0
 	totalOutGoingDuration := 0
 
