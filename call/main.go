@@ -21,6 +21,8 @@ import (
 	"log"
 )
 
+var filePath = "./call/input.csv"
+
 func readCsvFile(filePath string) [][]string {
 	f, err := os.Open(filePath)
 	if err != nil {
@@ -63,7 +65,9 @@ func getTimeProcessingInAndOutResult(inputName string, records [][]string) (int,
 func main() {
 	var totalIncomingDuration = 0
 	var totalOutGoingDuration = 0
-	records := readCsvFile("./call/input.csv")
+
+	records := readCsvFile(filePath)
+
 	if len(os.Args) < 2 {
 		fmt.Println("Usage: go run main.go <inputName>")
 		os.Exit(1)
